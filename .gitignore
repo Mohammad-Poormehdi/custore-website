@@ -1,4 +1,4 @@
-jstools/
-static/
-venv/
-.input
+.jstools/
+.static/
+.venv/
+input.css
