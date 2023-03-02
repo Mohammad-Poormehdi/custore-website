@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        @font-face{
+            font-family: 'samim';
+            src: url('{% static "fonts/Samim.ttf" %}'), format('ttf');
+            src:url('{% static "fonts/Samim-FD-WOL.ttf" %}'), format('ttf');
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body class="grid grid-cols-5 h-screen max-md:grid-cols-1 " style="font-family: 'samim', 'tahoma';">
+    <!-- pannel --> 
+    <div dir="rtl" class="w-full h-full p-5 bg-slate-800 max-md:h-auto">
+            <img src="{% static 'images/custore/custore_logo_white.svg' %}" class="w-[60%] mx-auto" alt="">
+            <a href="{% url 'inventory' %}"><p class="text-white border-b-2 border-white p-5 text-center text-lg hover:text-blue-500 hover:border-blue-500 duration-200">مدیریت انبار</p></a>
+            <a href="{% url 'orders' %}"><p class="text-white border-b-2 border-white p-5 text-center text-lg hover:text-blue-500 hover:border-blue-500 duration-200">پیگیری سفارشات</p></a>
+            <a href="{% url 'customers' %}"><p class="text-white border-b-2 border-white p-5 text-center text-lg hover:text-blue-500 hover:border-blue-500 duration-200">مشتریان</p></a>
+    </div>
+    <!-- content -->
+    <div class="col-span-4 p-10">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="{% static 'scripts/cms_script.js' %}"></script>
+</body>
+</html>

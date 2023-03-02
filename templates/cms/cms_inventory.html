@@ -1,0 +1,60 @@
+{% extends 'cms/cms_base.html' %}
+{% block title %}
+    مدیریت انبار
+{% endblock title %}
+
+{% block content %}
+    <!-- add and search container -->
+
+        <div class="flex justify-center md:hidden"><i class="fa text-red-500 fa-exclamation-triangle text-2xl"></i></div>
+        <p class="text-xl text-center text-red-500 md:hidden">برای استفاده بهتر از کامپیوتر استفاده کنید</p>
+
+    <h1 dir="rtl" class="text-2xl font-bold py-10">مدیریت انبار</h1>
+    <div dir="rtl" class="flex justify-between max-md:block max-md:space-y-4">
+        <a href=""><button class="bg-blue-500 max-md:w-full text-white px-4 py-2 rounded-lg">افزودن کالا</button></a>
+        <form class="flex max-md:justify-center" method="get" action="{% url 'inventory' %}">
+            <input type="search" name="search-query" class="px-3 py-2 rounded-lg focus:outline-none border" placeholder="جستجو کالا">
+            <button><i class="fa fa-search px-3 py-2"></i></button>
+        </form>
+    </div>
+        <!-- table row -->
+        <div dir="rtl" class="grid grid-cols-7 p-10 gap-4 text-xl max-md:text-sm max-md:hidden">
+            <p class=" font-bold w-auto">عکس</p>
+            <p class=" font-bold">نام کالا</p>
+            <p class=" font-bold">قیمت</p>
+            <p class=" font-bold">تعداد</p>
+            <p class=" font-bold">دسته بندی ها</p>
+            <p class=" font-bold">سایز ها</p>
+        </div>
+        {% for product in products %}
+        <!-- Product card -->
+        <div dir="rtl" class="grid grid-cols-7 border my-2 items-center gap-4 max-md:grid-cols-1 max-md:p-6">
+            <img src="{{product.image.url}}" class="w-[80px] mx-auto max-md:w-full" alt="">
+            <p>{{product.name}}</p>
+            <p>{{product.price}} تومان</p>
+            <p>{{product.quantity}}</p>
+            <div class="space-y-2">
+                {% for category in product.category.all %}
+                    <p>{{category.name}}</p>
+                {% endfor %}
+            </div>
+            <div class="space-y-3 f">
+                {% for size in product.size.all %}
+                    <p>{{size.size}}</p>
+                {% endfor %}
+            </div>
+            <!-- edit and delete -->
+            <div class="flex">
+                <button href="" class="delete-btn"><i class="fa fa-trash mx-6"></i></button>
+                <a href=""><i class="fa fa-pencil"></i></a>
+            </div>
+        </div>
+        <div id="cms-overlay" class="fixed w-full h-screen bg-black  top-0 left-0 opacity-0 transition-opacity duration-300 hidden "></div>
+        <div id="delete-msgbox" class="fixed p-8 space-y-5 bg-white rounded-lg top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 transition-transform duration-300 scale-0">
+            <h1 class="text-center text-xl font-bold ">حذف کالا</h1>
+            <p class="text-center">آیا از حذف این کالا اطمینان دارید ؟</p>
+            <a href=""><button class="px-3 mt-4 py-2 rounded-lg border w-full">حذف کالا</button></a>
+            <button id="delete-cancel-btn" class="w-full text-white bg-red-500 rounded-lg py-2 px-3">بازگشت</button>
+        </div>
+        {% endfor %}
+{% endblock %}
