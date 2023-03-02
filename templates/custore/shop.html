@@ -1,0 +1,50 @@
+{% extends 'custore/base.html' %}
+{% block title %}
+    فروشگاه
+{% endblock title %}
+
+{% block content %}
+<div class="container max-w-7xl mx-auto p-5">
+    <div class="grid gap-5 grid-cols-4 max-md:grid-cols-1">
+        <!-- filters section -->
+        <section>
+            <!-- categorys filter -->
+            <div dir="rtl" class="space-y-4 p-6">
+                <h2 class="text-2xl font-bold">دسته بندی ها</h2>
+                <a href="{% url 'shop' %}"><button class="mt-2">همه</button></a>
+                {% for category in categorys %}
+                <form action="{% url 'shop' %}" method="get">
+                    <input type="hidden" name="search-query" class="hidden" value="{{category.name}}">
+                    <button>{{category.name}}</button>
+                </form>
+
+                {% endfor %}
+                <hr>
+                <!-- sizes filter -->
+                <h2 class="text-2xl font-bold">سایز ها</h2>
+                {% for size in sizes %}
+                <form action="{% url 'shop' %}" method="get">
+                    <input type="hidden" value="{{size.size}}" name="search-query">
+                    <button>{{size.size}}</button>
+                </form>
+                {% endfor %}
+                <hr>
+            </div>
+        </section>
+        <!-- products section -->
+        {% if products %}
+        <section class="col-span-3 grid grid-cols-3 gap-6 max-[1100px]:grid-cols-2 max-md:grid-cols-1">
+
+            {% for product in products %}
+                <!-- product card -->
+                <div class="mx-auto">{% include 'custore/includes/product_card.html' with name=product.name price=product.price image=product.image.url %}</div>
+            {% endfor %}
+        </section>
+        {% else %}
+            <div class="flex w-full col-span-3 justify-center items-center">
+                <p class="text-4xl font-bold"> !موردی یافت نشد</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
