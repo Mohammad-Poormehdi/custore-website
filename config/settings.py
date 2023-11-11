@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-vp%o_kqr5wdyx3vzb-77sl6dezdh_j%uqr6@#quh$tw83vsieb
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'poormehdi.com'
+    '*'
 ]
 
 

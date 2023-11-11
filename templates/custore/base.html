@@ -3,10 +3,12 @@
 <html lang="fa">
 <head>
     <style>
-        @font-face{
-            font-family: 'samim';
-            src: url('{% static "fonts/Samim.ttf" %}'), format('ttf');
-            src:url('{% static "fonts/Samim-FD-WOL.ttf" %}'), format('ttf');
+        body{
+            font-family: 'dirooz';
+        }
+        @font-face {
+            font-family: 'dirooz';
+            src: url('{% static "fonts/dirooz.ttf" %}'), format('ttf');
         }
     </style>
     <meta charset="UTF-8">
@@ -22,7 +24,7 @@
 <link rel="icon" href="{% static 'images/custore/custore_logo.svg' %}">
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body class="relative z-0 min-h-screen" style="font-family: 'samim';">
+<body class="relative z-0 min-h-screen">
     <nav class="bg-white shadow-md flex flex-col">
         <div class="container mx-auto flex justify-between items-center p-4">
             <div class="flex items-center space-x-10">
